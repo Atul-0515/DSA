@@ -114,10 +114,19 @@ impl<'a, T> Iterator for IterMut<'a, T> {
     }
 }
 
+impl<T> Drop for LinkedList<T> {
+    fn drop(&mut self) {
+        let mut curr_link = self.head.take();
+        while let Some(mut node) = curr_link {
+            curr_link = node.next.take();
+        }
+    }
+}
+
 
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::*;
 
     #[test]
