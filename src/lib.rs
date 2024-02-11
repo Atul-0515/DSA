@@ -1,1 +1,1 @@
-mod list1;
+mod linked_list;
